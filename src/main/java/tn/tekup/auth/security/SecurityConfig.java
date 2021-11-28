@@ -32,15 +32,17 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/salles/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/proprietaires/**").permitAll();
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/salle").permitAll();
 		
 		http.authorizeRequests().antMatchers("/login","/register").permitAll();
-		http.authorizeRequests().antMatchers("/users").hasAuthority("ADMIN");
+		//http.authorizeRequests().antMatchers("/users").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
 		// JWTAuthenticationFilter ce lui qui va generer le token 
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
 		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	
+		
 
 }

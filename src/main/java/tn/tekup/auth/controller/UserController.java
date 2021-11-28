@@ -17,11 +17,9 @@ public class UserController {
 
 	@PostMapping("/register")
 	public User registre(@RequestBody UserForm userForm) {
-		return acountService.saveUser(userForm .getUsername(), userForm.getPassword(), userForm.getConfirmedPassword());
+		return acountService.saveUser(userForm.getUsername(), userForm.getPassword(), userForm.getConfirmedPassword());
 	}
 	
-
-
 	}
 
 @Data
